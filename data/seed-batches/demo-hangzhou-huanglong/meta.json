@@ -1,0 +1,25 @@
+{
+  "id": "demo-hangzhou-huanglong",
+  "createdAt": "2026-09-23T08:00:00.000Z",
+  "files": [
+    {
+      "name": "hangzhou_huanglong_gongcan.csv",
+      "category": "gongcan",
+      "size": 1848,
+      "savedAt": "2026-09-23T07:57:47.262Z"
+    },
+    {
+      "name": "hangzhou_huanglong_before_MS1.csv",
+      "category": "luce",
+      "size": 347497,
+      "savedAt": "2026-09-23T07:57:47.344Z"
+    },
+    {
+      "name": "hangzhou_huanglong_after_MS1.csv",
+      "category": "luce-after",
+      "size": 340541,
+      "savedAt": "2026-09-23T07:57:47.347Z"
+    }
+  ],
+  "alias": "杭州黄龙合成演示"
+}

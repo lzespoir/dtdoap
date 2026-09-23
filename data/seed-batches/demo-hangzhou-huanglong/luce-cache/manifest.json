@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "extractVersion": 2,
+  "files": [
+    {
+      "name": "hangzhou_huanglong_before_MS1.csv",
+      "size": 347497,
+      "mtimeMs": 1790150267343.8506,
+      "extract": "luce-cache/extracts/hangzhou_huanglong_before_MS1_8e0391b9.tsv",
+      "rows": 2400
+    }
+  ]
+}

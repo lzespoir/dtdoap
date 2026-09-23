@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { v4 as uuidv4 } from "uuid";
-import { BATCHES_DIR } from "./config.js";
+import { BATCHES_DIR, SEED_BATCHES_DIR } from "./config.js";
 import { decodeUploadFilename } from "./filename.js";
 
 export type FileCategory = "gongcan" | "luce" | "luce-after";
@@ -34,8 +34,55 @@ export function categoryDir(batchId: string, category: FileCategory): string {
   return path.join(batchDir(batchId), sub);
 }
 
+async function copyDirRecursive(src: string, dest: string): Promise<void> {
+  await fs.mkdir(dest, { recursive: true });
+  const entries = await fs.readdir(src, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === "tmp" || entry.name.endsWith(".tmp")) continue;
+    const from = path.join(src, entry.name);
+    const to = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      await copyDirRecursive(from, to);
+    } else if (entry.isFile()) {
+      await fs.copyFile(from, to);
+    }
+  }
+}
+
+/** 将 data/seed-batches 下预置批次复制到 data/batches（已存在则跳过） */
+export async function seedBundledBatches(): Promise<string[]> {
+  const seeded: string[] = [];
+  let entries;
+  try {
+    entries = await fs.readdir(SEED_BATCHES_DIR, { withFileTypes: true });
+  } catch {
+    return seeded;
+  }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const seedId = entry.name;
+    const dest = batchDir(seedId);
+    try {
+      await fs.access(metaPath(seedId));
+      continue;
+    } catch {
+      /* not present — copy seed */
+    }
+    const src = path.join(SEED_BATCHES_DIR, seedId);
+    await copyDirRecursive(src, dest);
+    const meta = await readMeta(seedId);
+    if (meta) seeded.push(seedId);
+    else await fs.rm(dest, { recursive: true, force: true });
+  }
+  return seeded;
+}
+
 export async function ensureBatchesRoot(): Promise<void> {
   await fs.mkdir(BATCHES_DIR, { recursive: true });
+  const seeded = await seedBundledBatches();
+  if (seeded.length > 0) {
+    console.log(`Seeded demo batches: ${seeded.join(", ")}`);
+  }
 }
 
 export async function createBatch(alias?: string): Promise<BatchMeta> {

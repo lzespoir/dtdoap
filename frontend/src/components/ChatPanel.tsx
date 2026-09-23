@@ -162,20 +162,36 @@ export default function ChatPanel({
     progressMsgIdRef.current = null;
   }, []);
 
-  const refreshBatches = useCallback(async () => {
+  const refreshBatches = useCallback(async (): Promise<BatchSummary[]> => {
     setBatchesLoading(true);
     try {
       const list = await listBatches();
       setBatches(list);
+      return list;
     } catch {
-      /* ignore */
+      return [];
     } finally {
       setBatchesLoading(false);
     }
   }, []);
 
+  const demoAutoOpenedRef = useRef(false);
+  const batchRef = useRef(batch);
+  batchRef.current = batch;
+
+  const handleSelectBatchRef = useRef<
+    ((b: BatchSummary) => Promise<void>) | null
+  >(null);
+
   useEffect(() => {
-    refreshBatches();
+    void (async () => {
+      const list = await refreshBatches();
+      if (demoAutoOpenedRef.current || batchRef.current) return;
+      const demo = list.find((b) => b.id === "demo-hangzhou-huanglong");
+      if (!demo || !handleSelectBatchRef.current) return;
+      demoAutoOpenedRef.current = true;
+      await handleSelectBatchRef.current(demo);
+    })();
   }, [refreshBatches]);
 
   useEffect(() => {
@@ -369,6 +385,8 @@ export default function ChatPanel({
       )
     );
   };
+
+  handleSelectBatchRef.current = handleSelectBatch;
 
   const handleAliasChange = (batchId: string, alias: string) => {
     setBatches((prev) =>

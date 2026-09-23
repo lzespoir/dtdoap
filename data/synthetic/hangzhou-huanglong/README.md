@@ -9,3 +9,5 @@
 - 推荐设置：`scene.json`
 
 上传上述文件即可分析；也可按 `scene.json` 配置区域中心、半径与关注 PCI。
+
+仓库另提供已处理演示批次：`data/seed-batches/demo-hangzhou-huanglong/`（启动时自动出现在批次列表）。

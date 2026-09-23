@@ -107,7 +107,7 @@ python3 tools/generate_synthetic_drive_test.py
 export LUCE_AFTER_DEFAULT_DIR=/path/to/after-csv-dir
 ```
 
-运行时上传数据保存在 `data/batches/`（已忽略，不进入版本库）。自有路测文件可放在本地 `data/sample/`（同样已忽略）。
+运行时上传数据保存在 `data/batches/`（已忽略，不进入版本库）。启动时会从 `data/seed-batches/` 灌入演示批次（杭州黄龙合成，已含处理结果），打开即可查看。自有路测文件可放在本地 `data/sample/`（同样已忽略）。
 
 可选：将 GLB 模型放入 `frontend/public/models/`，参数见 `frontend/src/constants.ts` 与 [frontend/public/models/README.md](frontend/public/models/README.md)。
 
@@ -120,8 +120,9 @@ dtdoap/
 ├── config/            # 共享配置
 ├── data/
 │   ├── batches/       # 运行时批次（gitignore）
+│   ├── seed-batches/  # 预置演示批次（入库，启动时灌入 batches）
 │   ├── sample/        # 本地样例（gitignore）
-│   └── synthetic/     # 合成示例数据
+│   └── synthetic/     # 合成示例原始文件
 ├── docs/
 ├── tools/
 ├── Dockerfile

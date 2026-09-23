@@ -7,6 +7,13 @@ export const PROJECT_ROOT = path.resolve(__dirname, "../..");
 export const HOST = process.env.HOST ?? "0.0.0.0";
 export const PORT = Number(process.env.PORT) || 3001;
 export const BATCHES_DIR = path.join(PROJECT_ROOT, "data", "batches");
+/** 预置演示批次（入库）；启动时若 batches 中不存在则复制进去 */
+export const SEED_BATCHES_DIR = path.join(
+  PROJECT_ROOT,
+  "data",
+  "seed-batches"
+);
+export const DEMO_BATCH_ID = "demo-hangzhou-huanglong";
 
 /** 相对项目根目录的默认优化前路测样例目录（合成数据，可入库） */
 export const DEFAULT_LUCE_BEFORE_SAMPLE_REL = path.join(

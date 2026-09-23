@@ -36,6 +36,7 @@ COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 COPY config ./config
 COPY scripts ./scripts
 COPY data/synthetic ./data/synthetic
+COPY data/seed-batches ./data/seed-batches
 
 RUN mkdir -p /app/data/batches
 
