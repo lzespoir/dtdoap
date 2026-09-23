@@ -40,11 +40,13 @@
 ```bash
 git clone git@github.com:lzespoir/dtdoap.git
 cd dtdoap
-docker compose up --build
+docker compose up --build -d
 ```
 
 浏览器打开 <http://localhost:3001>；健康检查：<http://localhost:3001/api/health>  
-上传数据保存在 Docker volume `dtdoap-batches`。改端口：`DTDOAP_PORT=8080 docker compose up --build`。
+上传数据保存在 Docker volume `dtdoap-batches`。改端口：`DTDOAP_PORT=8080 docker compose up --build -d`。
+
+常用：`docker compose logs -f` 看日志，`docker compose down` 停止。
 
 ### docker run
 
