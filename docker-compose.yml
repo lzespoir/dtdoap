@@ -1,0 +1,18 @@
+services:
+  dtdoap:
+    build: .
+    image: dtdoap:local
+    container_name: dtdoap
+    ports:
+      - "${DTDOAP_PORT:-3001}:3001"
+    environment:
+      PORT: "3001"
+      HOST: "0.0.0.0"
+      NETOPT_PYTHON: python3
+      MAX_UPLOAD_FILE_SIZE_MB: "${MAX_UPLOAD_FILE_SIZE_MB:-1024}"
+    volumes:
+      - dtdoap-batches:/app/data/batches
+    restart: unless-stopped
+
+volumes:
+  dtdoap-batches:

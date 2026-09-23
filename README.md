@@ -22,12 +22,42 @@
 
 ## 环境要求
 
+**Docker 部署**：Docker 20+（含 Compose V2）
+
+**本地开发**：
+
 - Node.js 18+
 - npm
 - Python 3
 - bash、awk、sort
 
-## 快速开始
+## 快速开始（Docker，推荐）
+
+本机只需安装 [Docker](https://docs.docker.com/get-docker/)，无需单独安装 Node / Python。
+
+### docker compose
+
+```bash
+git clone git@github.com:lzespoir/dtdoap.git
+cd dtdoap
+docker compose up --build
+```
+
+浏览器打开 <http://localhost:3001>；健康检查：<http://localhost:3001/api/health>  
+上传数据保存在 Docker volume `dtdoap-batches`。改端口：`DTDOAP_PORT=8080 docker compose up --build`。
+
+### docker run
+
+```bash
+docker build -t dtdoap:local .
+docker run --rm -p 3001:3001 \
+  -v dtdoap-batches:/app/data/batches \
+  dtdoap:local
+```
+
+镜像内已包含 Node 运行时、Python 3、awk/sort，以及合成样例数据。
+
+## 本地开发（npm）
 
 ```bash
 git clone git@github.com:lzespoir/dtdoap.git
@@ -85,15 +115,17 @@ export LUCE_AFTER_DEFAULT_DIR=/path/to/after-csv-dir
 
 ```
 dtdoap/
-├── backend/       # API、路测处理、对比计算
-├── frontend/      # React + Cesium
-├── config/        # 共享配置
+├── backend/           # API、路测处理、对比计算
+├── frontend/          # React + Cesium
+├── config/            # 共享配置
 ├── data/
-│   ├── batches/   # 运行时批次（gitignore）
-│   ├── sample/    # 本地样例（gitignore）
-│   └── synthetic/ # 合成示例数据
+│   ├── batches/       # 运行时批次（gitignore）
+│   ├── sample/        # 本地样例（gitignore）
+│   └── synthetic/     # 合成示例数据
 ├── docs/
-└── tools/
+├── tools/
+├── Dockerfile
+└── docker-compose.yml
 ```
 
 ## 环境变量
@@ -111,4 +143,4 @@ dtdoap/
 
 ## License
 
-未指定开源协议。版权归作者所有。
+Private.
