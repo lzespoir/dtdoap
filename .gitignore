@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Runtime / local data (not for version control)
+data/batches/
+# Real operator/venue measurements — do NOT commit
+data/sample/**
+!data/sample/.gitkeep
+# Synthetic fixtures under data/synthetic/ ARE versioned for CI/demo
+
+# Large 3D assets — place locally; see frontend/public/models/README.md
+frontend/public/models/*.glb
+frontend/public/models/*.glb.bak
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Python (tools/, backend/scripts/)
+__pycache__/
+*.py[cod]
+
+# OS & editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,59 @@
+{
+  "name": "杭州黄龙体育中心合成场景",
+  "province": "浙江省",
+  "city": "杭州市",
+  "district": "西湖区",
+  "note": "Fully synthetic. No real operator / venue measurement data.",
+  "center": {
+    "longitude": 120.13085,
+    "latitude": 30.27095
+  },
+  "recommendedSettings": {
+    "useRegionFilter": true,
+    "regionCenterLon": 120.13085,
+    "regionCenterLat": 30.27095,
+    "regionRadiusMeters": 70,
+    "useGrasslandFilter": false,
+    "comparisonGroupName": "场内 4 个 AAU",
+    "comparisonTargetPcis": [
+      411,
+      417,
+      423,
+      429
+    ],
+    "gridSizeMeters": 5
+  },
+  "targetPcis": [
+    411,
+    417,
+    423,
+    429
+  ],
+  "beforeSummary": {
+    "points": 2400,
+    "servingCounts": {
+      "411": 454,
+      "501": 282,
+      "417": 497,
+      "513": 3,
+      "507": 72,
+      "429": 515,
+      "423": 577
+    },
+    "rsrpMean": -92.91,
+    "sinrMean": 3.24,
+    "targetServingRatio": 0.8512
+  },
+  "afterSummary": {
+    "points": 2400,
+    "servingCounts": {
+      "411": 622,
+      "417": 531,
+      "429": 558,
+      "423": 689
+    },
+    "rsrpMean": -86.5,
+    "sinrMean": 6.18,
+    "targetServingRatio": 1.0
+  }
+}

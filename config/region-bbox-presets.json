@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "presets": [
+    {
+      "id": "grassland-2",
+      "label": "草坪区2",
+      "bbox": {
+        "lonMin": 114.2120174,
+        "lonMax": 114.2126571,
+        "latMin": 22.6966393,
+        "latMax": 22.6975736
+      }
+    },
+    {
+      "id": "grassland-3",
+      "label": "草坪区3",
+      "bbox": {
+        "lonMin": 114.2120174,
+        "lonMax": 114.2126863,
+        "latMin": 22.6966393,
+        "latMax": 22.6975736
+      }
+    },
+    {
+      "id": "vip-3",
+      "label": "VIP区域3",
+      "bbox": {
+        "lonMin": 114.2120611,
+        "lonMax": 114.2126376,
+        "latMin": 22.6968146,
+        "latMax": 22.6973985
+      }
+    }
+  ]
+}
