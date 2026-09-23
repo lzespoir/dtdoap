@@ -133,4 +133,4 @@ git push origin 2026-06-02
 
 ## License
 
-Private — 暂未指定开源协议。
+[MIT](LICENSE) — 可自由使用、修改、商用与再分发；需保留版权与许可声明。
